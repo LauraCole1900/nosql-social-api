@@ -14,9 +14,6 @@ const userController = require("../controllers/userController.js");
 router.route("/post")
   .post(userController.create);
 
-router.route("/post/:id/friends/:friendId")
-  .post(userController.createFriend);
-
 
 router.route("/")
   .get(userController.findAll);
@@ -28,12 +25,15 @@ router.route("/:id")
 router.route("/update/:id")
   .put(userController.updateUser);
 
+router.route("/post/:id/friends/:friendId")
+  .put(userController.addFriend);
+
+router.route("/delete/:id/friends/:friendId")
+  .put(userController.removeFriend);
+
 
 router.route("/delete/:id")
   .delete(userController.deleteUser);
-
-router.route("/delete/:id/friends/:friendId")
-  .post(userController.deleteFriend);
 
 
 module.exports = router;
