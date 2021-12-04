@@ -23,9 +23,7 @@ app.get("*", (req, res) => {
 });
 
 // Connect to the Mongo DB
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/social-media_db",
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/social-media_db");
 
 // Start the server
 app.listen(PORT, () =>

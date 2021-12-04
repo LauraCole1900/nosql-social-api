@@ -27,9 +27,9 @@ const Schema = mongoose.Schema;
 
 const reactionSchema = new Schema({
   reactionId: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Types.ObjectId,
     required: true,
-    default: new Schema.Types.ObjectId
+    default: new mongoose.Types.ObjectId
   },
   body: {
     type: String,

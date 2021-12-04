@@ -42,13 +42,13 @@ const userSchema = new Schema(
     },
     userThoughts: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "Thought"
       }
     ],
     userFriends: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "User"
       }
     ]

@@ -1,2 +1,4 @@
-export { default as Thought } from "./thoughtModel";
-export { default as User } from "./userModel";
+module.exports ={
+  Thought: require("./thoughtModel"),
+  User: require("./userModel")
+}
