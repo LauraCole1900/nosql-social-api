@@ -24,7 +24,6 @@
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const thoughts = require("./thoughtModel");
 
 const userSchema = new Schema(
   {
@@ -32,7 +31,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      trim: true
+      trim: true,
+      match: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     },
     userName: {
       type: String,
@@ -40,11 +40,18 @@ const userSchema = new Schema(
       unique: true,
       trim: true
     },
-    userThoughts: {
-      type: String,
-      required: true
-    },
-    userFriends: [books]
+    userThoughts: [
+      {
+      type: Schema.Types.ObjectId,
+      ref: "Thought"
+    }
+  ],
+    userFriends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ]
   },
   {
     toJSON: {
