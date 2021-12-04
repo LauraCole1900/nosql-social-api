@@ -22,7 +22,7 @@ module.exports = {
   // GET user by ID
   // ? TODO: add functionality to populate friend and thought info
   findById: function (req, res) {
-    console.log("from userController findByID", req.params.id);
+    console.log("from userController findById", req.params.id);
     db.User
       .findOne({ _id: req.params.id })
       .then(dbModel => res.json(dbModel))
