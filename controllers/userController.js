@@ -20,6 +20,7 @@ module.exports = {
   },
 
   // GET user by ID
+  // ? TODO: add functionality to populate friend and thought info
   findById: function (req, res) {
     console.log("from userController findByID", req.params.id);
     db.User
@@ -69,6 +70,7 @@ module.exports = {
 
 
   // DELETE user
+  // TODO: Add functionality to remove given user's thoughts when they're deleted
   deleteUser: function (req, res) {
     db.User
       .findById({ _id: req.params.id })

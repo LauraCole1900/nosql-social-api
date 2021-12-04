@@ -1,12 +1,3 @@
-// **`/api/users`**
-
-// * `GET` a single user by its `_id` and populated thought and friend data
-
-// **BONUS**: Remove a user's associated thoughts when deleted.
-
-// **`/api/users/:userId/friends/:friendId`**
-
-
 const router = require("express").Router();
 const userController = require("../controllers/userController.js");
 
