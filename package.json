@@ -1,0 +1,18 @@
+{
+  "name": "social-media-apis",
+  "version": "1.0.0",
+  "description": "This app is a sample social media back-end using MongoDB, Mongoose, and Express.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/seed.js"
+  },
+  "author": "Laura E. Cole",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.14"
+  }
+}
