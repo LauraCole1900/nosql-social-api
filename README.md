@@ -1,4 +1,4 @@
-# nosql-social-api
+# NoSQL Social Media API
 
 ## Table of Contents
 
