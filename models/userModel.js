@@ -42,10 +42,10 @@ const userSchema = new Schema(
     },
     userThoughts: [
       {
-      type: Schema.Types.ObjectId,
-      ref: "Thought"
-    }
-  ],
+        type: Schema.Types.ObjectId,
+        ref: "Thought"
+      }
+    ],
     userFriends: [
       {
         type: Schema.Types.ObjectId,
