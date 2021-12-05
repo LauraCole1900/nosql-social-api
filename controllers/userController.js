@@ -20,7 +20,6 @@ module.exports = {
   },
 
   // GET user by ID
-  // ? TODO: add functionality to populate friend and thought info
   findById: function (req, res) {
     console.log("from userController findById", req.params.id);
     db.User
@@ -57,23 +56,19 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
 
-  // deleteBook: async function (req, res) {
-  //   const updatedUser = await db.User.findOneAndUpdate(
-  //     { _id: req.user._id },
-  //     { $pull: { myBooks: { bookId: req.params.id }}},
-  //     { new: true});
-  //     if (!updatedUser) {
-  //       return res.status(404).json({ message: "User not found "});
-  //     }
-  //     return res.json(updatedUser);
-  // }
-
 
   // DELETE user
   // TODO: Add functionality to remove given user's thoughts when they're deleted
   deleteUser: function (req, res) {
     db.User
       .findById({ _id: req.params.id })
+      .then(User.userThoughts.forEach(thought => {
+        db.Thought
+          .findById({ _id: thought })
+          .then(dbModel => dbModel.remove())
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err))
+      }))
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
