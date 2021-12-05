@@ -34,7 +34,7 @@ module.exports = {
   updateThought: function (req, res) {
     console.log("from thoughtController updateThought", req.body);
     db.Thought
-      .findOneAndUpdate({ _id: req.body.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
@@ -43,16 +43,16 @@ module.exports = {
   addReaction: function (req, res) {
     console.log("from thoughtController addReaction", req.params, req.body);
     db.Thought
-      .findOneAndUpdate({ _id: req.params.id }, { $addToSet: { thoughtReactions: req.body } })
+      .findOneAndUpdate({ _id: req.params.id }, { $addToSet: { thoughtReactions: req.body } }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
 
   // PUT thought to remove reaction info
   removeReaction: function (req, res) {
-    console.log("from userController removeFriend", req.params);
+    console.log("from thoughtController removeReaction", req.params);
     db.Thought
-      .findOneAndUpdate({ _id: req.params.id }, { $pull: { thoughtReactions: req.params.reactionId } })
+      .findOneAndUpdate({ _id: req.params.id }, { $pull: { thoughtReactions: { reactionId: req.params.reactionId } } }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },

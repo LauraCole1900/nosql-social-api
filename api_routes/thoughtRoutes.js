@@ -16,10 +16,10 @@ router.route("/:id")
 router.route("/update/:id")
   .put(thoughtController.updateThought);
 
-router.route("/post/:id/reaction/")
+router.route("/add/:id/reaction/")
   .put(thoughtController.addReaction);
 
-router.route("/delete/:id/reaction/:reactionId")
+router.route("/remove/:id/reaction/:reactionId")
   .put(thoughtController.removeReaction);
 
 

@@ -37,6 +37,10 @@ const thoughtSchema = new Schema(
       type: String,
       required: true
     },
+    userId: {
+      type: mongoose.Types.ObjectId,
+      required: true
+    },
     createdAt: {
       type: Date,
       required: true,
