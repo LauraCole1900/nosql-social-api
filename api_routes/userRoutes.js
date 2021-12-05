@@ -16,10 +16,10 @@ router.route("/:id")
 router.route("/update/:id")
   .put(userController.updateUser);
 
-router.route("/post/:id/friends/:friendId")
+router.route("/add/:id/friends/:friendId")
   .put(userController.addFriend);
 
-router.route("/delete/:id/friends/:friendId")
+router.route("/remove/:id/friends/:friendId")
   .put(userController.removeFriend);
 
 

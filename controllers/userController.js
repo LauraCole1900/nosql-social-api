@@ -32,9 +32,9 @@ module.exports = {
 
   // PUT user
   updateUser: function (req, res) {
-    console.log("from userController updateUser", req.body);
+    console.log("from userController updateUser", req.params, req.body);
     db.User
-      .findOneAndUpdate({ _id: req.body.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
@@ -43,7 +43,7 @@ module.exports = {
   addFriend: function (req, res) {
     console.log("from userController addFriend", req.params);
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, { $addToSet: { userFriends: req.params.friendId } })
+      .findOneAndUpdate({ _id: req.params.id }, { $addToSet: { userFriends: req.params.friendId } }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
@@ -52,7 +52,7 @@ module.exports = {
   removeFriend: function (req, res) {
     console.log("from userController removeFriend", req.params);
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, { $pull: { userFriends: req.params.friendId } })
+      .findOneAndUpdate({ _id: req.params.id }, { $pull: { userFriends: req.params.friendId } }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
