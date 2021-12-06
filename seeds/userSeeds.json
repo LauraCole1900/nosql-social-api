@@ -1,0 +1,22 @@
+[
+  {
+    "email": "seed1@seeder.com",
+    "userName": "First"
+  },
+  {
+    "email": "seed2@seeder.com",
+    "userName": "JavaScriptGod"
+  },
+  {
+    "email": "seed3@seeder.com",
+    "userName": "WitchOfApplePond"
+  },
+  {
+    "email": "seed4@seeder.com",
+    "userName": "JustARegularGuy"
+  },
+  {
+    "email": "seed5@seeder.com",
+    "userName": "DoctorScully"
+  } 
+]
