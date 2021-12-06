@@ -3,11 +3,9 @@ const db = require("../models")
 module.exports = {
   // POST new thought to database
   create: function (req, res) {
-    console.log("from thoughtController create", req.body);
     db.Thought
       .create(req.body)
       .then(thought => {
-        console.log("thoughtController create thought", thought);
         db.User.findOneAndUpdate({ _id: thought.userId }, { $addToSet: { userThoughts: thought._id } }, { new: true })
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err))
@@ -26,7 +24,6 @@ module.exports = {
 
   // GET thought by ID
   findById: function (req, res) {
-    console.log("from thoughtController findById", req.params.id);
     db.Thought
       .findOne({ _id: req.params.id })
       .then(dbModel => res.json(dbModel))
@@ -36,7 +33,6 @@ module.exports = {
 
   // PUT thought
   updateThought: function (req, res) {
-    console.log("from thoughtController updateThought", req.body);
     db.Thought
       .findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
       .then(dbModel => res.json(dbModel))
@@ -45,7 +41,6 @@ module.exports = {
 
   // PUT thought with new reaction info
   addReaction: function (req, res) {
-    console.log("from thoughtController addReaction", req.params, req.body);
     db.Thought
       .findOneAndUpdate({ _id: req.params.id }, { $addToSet: { thoughtReactions: req.body } }, { new: true })
       .then(dbModel => res.json(dbModel))
@@ -54,7 +49,6 @@ module.exports = {
 
   // PUT thought to remove reaction info
   removeReaction: function (req, res) {
-    console.log("from thoughtController removeReaction", req.params);
     db.Thought
       .findOneAndUpdate({ _id: req.params.id }, { $pull: { thoughtReactions: { reactionId: req.params.reactionId } } }, { new: true })
       .then(dbModel => res.json(dbModel))
