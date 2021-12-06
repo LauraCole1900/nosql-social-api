@@ -9,17 +9,17 @@ const seedDatabase = async () => {
 
   await User.deleteMany({});
   await Thought.deleteMany({});
-  
+
   const users = await User.create(userSeeds);
   
-  const user = users[Math.floor(Math.random() * users.length)]
-
   for (thought of thoughtSeeds) {
+    const user = users[Math.floor(Math.random() * users.length)]
     const newThought = await Thought.create({
       ...thought,
       userId: user.id,
       userName: user.userName
     });
+    await User.findOneAndUpdate({ _id: user.id }, { $addToSet: { userThoughts: newThought._id } }, { new: true })
   }
 
   process.exit(0);
