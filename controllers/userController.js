@@ -60,17 +60,47 @@ module.exports = {
   // DELETE user
   // TODO: Add functionality to remove given user's thoughts when they're deleted
   deleteUser: function (req, res) {
-    db.User
-      .findById({ _id: req.params.id })
-      .then(User.userThoughts.forEach(thought => {
-        db.Thought
-          .findById({ _id: thought })
-          .then(dbModel => dbModel.remove())
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err))
-      }))
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+    db.User.findOneAndDelete({ _id: req.params.id })
+      .then(user =>
+        !user
+          ? res.status(400).json({ message: "User not found" })
+          : db.Thought.deleteMany({ _id: { $in: user.userThoughts } })
+      )
+      .then(() => res.json({ message: "User and thoughts deleted" }))
       .catch(err => res.status(422).json(err))
   }
 }
+
+// deleteCourse(req, res) {
+//   Course.findOneAndDelete({ _id: req.params.courseId })
+//     .then((course) =>
+//       !course
+//         ? res.status(404).json({ message: 'No course with that ID' })
+//         : Student.deleteMany({ _id: { $in: course.students } })
+//     )
+//     .then(() => res.json({ message: 'Course and students deleted!' }))
+//     .catch((err) => res.status(500).json(err));
+// },
+
+// deleteStudent(req, res) {
+//   Student.findOneAndRemove({ _id: req.params.studentId })
+//     .then((student) =>
+//       !student
+//         ? res.status(404).json({ message: 'No such student exists' })
+//         : Course.findOneAndUpdate(
+//             { students: req.params.studentId },
+//             { $pull: { students: req.params.studentId } },
+//             { new: true }
+//           )
+//     )
+//     .then((course) =>
+//       !course
+//         ? res.status(404).json({
+//             message: 'Student deleted, but no courses found',
+//           })
+//         : res.json({ message: 'Student successfully deleted' })
+//     )
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
