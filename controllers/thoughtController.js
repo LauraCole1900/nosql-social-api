@@ -39,7 +39,7 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
 
-  // PUT thought with new reaction info
+  // PUT thought to add new reaction info
   addReaction: function (req, res) {
     db.Thought
       .findOneAndUpdate({ _id: req.params.id }, { $addToSet: { thoughtReactions: req.body } }, { new: true })
@@ -56,7 +56,7 @@ module.exports = {
   },
 
 
-  // DELETE thought
+  // DELETE thought & remove its ID from its user's userThoughts array
   deleteThought: function (req, res) {
     db.Thought
       .findOneAndRemove({ _id: req.params.id })

@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Serve up static assets
+// Serve up static assets as if this is fullstack
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "production") {
 // Define API routes
 app.use(routes);
 
-// All other requests sent to the React app
+// All other requests would be sent to the React app if this were fullstack
 // Define any API routes before this runs
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));

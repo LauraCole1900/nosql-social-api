@@ -37,7 +37,7 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
 
-  // PUT user with new friend info
+  // PUT user to add new friend info
   addFriend: function (req, res) {
     db.User
       .findOneAndUpdate({ _id: req.params.id }, { $addToSet: { userFriends: req.params.friendId } }, { new: true })
@@ -54,7 +54,7 @@ module.exports = {
   },
 
 
-  // DELETE user
+  // DELETE user & user's Thoughts
   deleteUser: function (req, res) {
     db.User.findOneAndDelete({ _id: req.params.id })
       .then(user =>
