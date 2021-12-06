@@ -11,7 +11,7 @@ const seedDatabase = async () => {
   await Thought.deleteMany({});
 
   const users = await User.create(userSeeds);
-  
+
   for (thought of thoughtSeeds) {
     const user = users[Math.floor(Math.random() * users.length)]
     const newThought = await Thought.create({

@@ -11,6 +11,7 @@ module.exports = {
 
 
   // GET all users
+  // TODO: add functionality to populate thought and friend data
   findAll: function (req, res) {
     db.User
       .find({})
@@ -19,6 +20,7 @@ module.exports = {
   },
 
   // GET user by ID
+  // TODO: add functionality to populate thought and friend data
   findById: function (req, res) {
     db.User
       .findOne({ _id: req.params.id })

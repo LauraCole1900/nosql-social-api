@@ -59,7 +59,7 @@ $ node server.js
 
 Then go to the browser and enter into the address bar
 ```
-$ localhost:3000
+$ localhost:3001
 ```
 
 ## Usage
