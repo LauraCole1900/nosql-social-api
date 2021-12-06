@@ -2,12 +2,16 @@ const db = require("../models")
 
 module.exports = {
   // POST new thought to database
-  // TODO: add functionality to push thought ID to given user's userThoughts
   create: function (req, res) {
     console.log("from thoughtController create", req.body);
     db.Thought
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(thought => {
+        console.log("thoughtController create thought", thought);
+        db.User.findOneAndUpdate({ _id: thought.userId }, { $addToSet: { userThoughts: thought._id } }, { new: true })
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err))
+      })
       .catch(err => res.status(422).json(err))
   },
 
@@ -59,11 +63,17 @@ module.exports = {
 
 
   // DELETE thought
-  // TODO: add functionality to remove thought ID from given user's userThoughts
   deleteThought: function (req, res) {
     db.Thought
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
+      .findOneAndRemove({ _id: req.params.id })
+      .then(thought =>
+        !thought
+          ? res.status(404).json({ message: "Cannot find a thought with that ID" })
+          : db.User.findOneAndUpdate(
+            { userThoughts: req.params.id },
+            { $pull: { userThoughts: req.params.id } },
+            { new: true }
+          ))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   }
