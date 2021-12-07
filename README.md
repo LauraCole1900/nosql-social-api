@@ -15,7 +15,7 @@
 
 ## Description
 
-This is a the back end and middleware of a generic social media site, built using Mongoose and demonstrated using Thunder Client.
+This is a the back end and middleware of a simple social media site, built using Express, Mongoose, and RESTful APIs, and demonstrated using Thunder Client.
 
 ## Links
 
@@ -64,7 +64,7 @@ $ localhost:3001
 
 ## Usage
 
-This application is intended to demonstrate a sample social media back-end.
+This application is intended to demonstrate a sample social media back-end using RESTful APIs.
 
 ## Technologies Used
 

@@ -1,29 +1,7 @@
-// **Thought**:
-
-// * `thoughtText`
-//   * String
-//   * Required
-//   * Must be between 1 and 280 characters
-
-// * `createdAt`
-//   * Date
-//   * Set default value to the current timestamp
-//   * Use a getter method to format the timestamp on query
-
-// * `username` (The user that created this thought)
-//   * String
-//   * Required
-
-// * `reactions` (These are like replies)
-//   * Array of nested documents created with the `reactionSchema`
-
-// **Schema Settings**:
-
-// Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
-
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const reactions = require("./reactionModel");
+const formatDate = require("../utils/helpers");
 
 const thoughtSchema = new Schema(
   {
@@ -44,7 +22,8 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       required: true,
-      default: Date.now
+      default: Date.now,
+      get: timestamp => formatDate(timestamp)
     },
     thoughtReactions: [reactions]
   },
