@@ -31,11 +31,17 @@ module.exports = {
   },
 
 
-  // PUT user
+  // PUT user & user's Thoughts to match
   updateUser: function (req, res) {
     db.User
       .findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
-      .then(dbModel => res.json(dbModel))
+      .then(user =>
+        !user
+          ? res.status(400).json({ message: "User not found" })
+          : db.Thought.updateMany({ _id: { $in: user.userThoughts } },
+            { userName: user.userName }
+          ))
+      .then(() => res.json({ message: "User and thoughts updated" }))
       .catch(err => res.status(422).json(err))
   },
 
