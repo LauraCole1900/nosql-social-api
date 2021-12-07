@@ -11,19 +11,21 @@ module.exports = {
 
 
   // GET all users
-  // TODO: add functionality to populate thought and friend data
   findAll: function (req, res) {
     db.User
       .find({})
+      .populate("userThoughts")
+      .populate("userFriends")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
 
   // GET user by ID
-  // TODO: add functionality to populate thought and friend data
   findById: function (req, res) {
     db.User
       .findOne({ _id: req.params.id })
+      .populate("userThoughts")
+      .populate("userFriends")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
