@@ -81,5 +81,3 @@ module.exports = function(timestamp) {
   }
   return `${timestampArr[0]}, ${timestampArr[1]} ${timestampArr[2]}, ${timestampArr[3]} at ${time}`
 }
-
-// module.exports = formatDate();
