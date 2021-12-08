@@ -19,9 +19,9 @@ This is a the back end and middleware of a simple social media site, built using
 
 ## Links
 
-[Link to walkthrough video](assets/social-media-api_demo.webm) NOT AVAILABLE YET
+[Link to walkthrough video](assets/social-media-api_demo.webm)
 
-[Alternate link to walkthrough video](https://#/view) NOT AVAILABLE YET
+[Alternate link to walkthrough video](https://drive.google.com/file/d/1nJv9nFMdfBEFNB6hjE5arZFecWLTeIcK/view?usp=sharing)
 
 ## Installation Instructions
 
